@@ -1,0 +1,11 @@
+@import "./components/input_block/input_block.css";
+@import "./components/submit_btn/btn.css";
+@import "./components/result_block/result_block.css";
+
+body{
+  background-color: #DEF2F1;
+}
+.App{
+  margin-top: 10em;
+  text-align: center;
+}

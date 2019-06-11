@@ -1,0 +1,14 @@
+.result_block{
+    width: 35.000em;
+    margin: 2.5em auto 0;
+    border: 1px solid darkolivegreen;
+    border-radius: 0.625em;
+    padding: 0.625em;
+    background-color: aliceblue;
+    text-align: left;
+}
+.result-header{
+    border-bottom: 1px solid darkolivegreen;
+    width: 10.625em;
+    margin-bottom: 9.375em;
+}
