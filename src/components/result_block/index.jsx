@@ -13,7 +13,7 @@ const Result = (props) => {
                 <div className="form-group">
                     <span htmlFor="urlResult" className={"result-header"}>{label}</span>
                     <br/>
-                    <span>{shortUrl}</span>
+                    <span>{shortUrl === null ? "Your URL will be here" : shortUrl}</span>
                 </div>
             </div>
         </div>
