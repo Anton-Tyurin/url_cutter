@@ -1,5 +1,5 @@
 import React from 'react';
-import SubmitBtn from "../sumbit_btn";
+import SubmitBtn from "../submit_btn";
 import PropTypes from 'prop-types';
 
 
