@@ -10,27 +10,57 @@ class App extends React.Component {
     this.state = {
       shortUrl: null, //сокращенная URL
     }
+    if (document.location.pathname.length > 1 ){
+      this.getLongUrl(document.location.pathname.substring(1, document.location.pathname.length))
+    }
   }
-
+  getLongUrl(address){
+    console.log(address)
+    const serverUrl = "http://0.0.0.0:8000/get_long" // server API;
+    axios.get(serverUrl,{
+          params:{
+            shortUrl: address,
+            format: "json",
+          },
+        })
+        .then(resp=>{
+          // window.location.replace(resp.data)
+        })
+        .catch(err=>{
+          // alert (err)
+          alert("Your short link doesn't exists");
+        });
+  }
   updateState = (value) => {
-    let shortUrl = JSON.parse(value)["shortUrl"];
+    console.log(typeof value)
+    let shortUrl = value.shorturl;
     this.setState({ shortUrl: shortUrl });
   };
   clearState = () => {
     this.setState({ shortUrl: null});
   };
+
+
   submitData = (e) =>{
     e.preventDefault();
     this.clearState();
     const {target} = e;
-    const url = "" // server API;
+    const url = "http://0.0.0.0:8000/get_short" // server API;
     const param = target.elements["inputUrl"].value;
-    axios.get(url,param)
-        .then(data=>{
-          this.updateState(data);
-          this.clearState("inputUrl");
+    axios.get(url, {
+      params:{
+        longurl: param,
+        format: "json",
+      },
+
+    })
+        .then(resp=>{
+          this.updateState(resp.data);
         })
-        .catch(err=>{alert("Oups, something wrong")});
+        .catch(err=>{
+          console.log(err);
+          alert("Oups, something wrong");
+        });
   };
 
   render(){
