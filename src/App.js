@@ -15,19 +15,19 @@ class App extends React.Component {
     }
   }
   getLongUrl(address){
-    console.log(address)
     const serverUrl = "http://0.0.0.0:8000/get_long" // server API;
     axios.get(serverUrl,{
           params:{
-            shortUrl: address,
+            shorturl: address,
             format: "json",
           },
         })
         .then(resp=>{
-          // window.location.replace(resp.data)
+          console.log(resp.data)
+          // document.location.href = resp.data.longurl
         })
         .catch(err=>{
-          // alert (err)
+          alert (err)
           alert("Your short link doesn't exists");
         });
   }
@@ -45,14 +45,13 @@ class App extends React.Component {
     e.preventDefault();
     this.clearState();
     const {target} = e;
-    const url = "http://0.0.0.0:8000/get_short" // server API;
+    const serverUrl = "http://0.0.0.0:8000/get_short" // server API;
     const param = target.elements["inputUrl"].value;
-    axios.get(url, {
+    axios.get(serverUrl, {
       params:{
         longurl: param,
         format: "json",
       },
-
     })
         .then(resp=>{
           this.updateState(resp.data);
